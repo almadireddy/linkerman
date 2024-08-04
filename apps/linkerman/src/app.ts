@@ -10,6 +10,11 @@ app.get('/', (req, res) => {
   res.send('Hello there!');
 });
 
+app.get('/health', (req, res) => {
+  res.status(200);
+  res.send('OK');
+});
+
 app.post('/addShortlink', (req, res) => {
   res.send('TBD'); 
 });
