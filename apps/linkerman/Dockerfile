@@ -8,6 +8,6 @@ COPY . .
 
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 80
 
 CMD [ "npx", "nodemon", "--delay", "500ms", "build/app.js" ]
