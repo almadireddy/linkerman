@@ -28,7 +28,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::100782856569:role/GitHubAction-AssumeRoleWithAction
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: us-west-2
 
       - name: Login to Amazon ECR
         id: login-ecr
