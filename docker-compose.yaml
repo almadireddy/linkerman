@@ -1,0 +1,44 @@
+services:
+  web:
+    container_name: 'linkerman'
+    image: linkerman
+    build:
+      context: ./
+      dockerfile: ./apps/linkerman/Dockerfile
+    volumes:
+      - ./apps/linkerman:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "postgres"
+    networks:
+      - linkerman-network
+    environment:
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGUSER=postgres
+      - PGPASSWORD=password
+      - PORT=3000
+  
+  postgres:
+    container_name: 'postgres'
+    restart: always
+    image: 'postgres'
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    networks:
+      - linkerman-network
+    volumes:
+      - database_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+networks:
+  linkerman-network:
+    driver: bridge
+
+volumes:
+  database_data:
+    driver: local
