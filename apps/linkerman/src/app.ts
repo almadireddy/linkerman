@@ -19,8 +19,12 @@ const app = express();
 const { PORT } = process.env;
 
 app.get('/', async (req, res) => {
-  const result = await client.query('select 1 as helloworld'); 
-  res.send(`Hello there! ${result.rowCount ?? 'was null'}`);
+  try {
+    const result = await client.query('select 1 as helloworld'); 
+    res.send(`Hello there! ${result.rowCount ?? 'was null'}`);
+  } catch (e) {
+    res.send(`Hello there! ${e}`);
+  }
 });
 
 app.get('/health', (req, res) => {
