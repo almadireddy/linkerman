@@ -11,9 +11,6 @@ const client = new Client();
   } catch (e) {
     console.log(e);
   }
-  finally {
-    await client.end();
-  }
 })();
 
 dotenv.config();
